@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>WebsiteKita — Kirim ke WhatsApp</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f1724;
+      color: #e6eef8;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+
+    .panel {
+      background: #0b1220;
+      padding: 1.25rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    label {
+      display: block;
+      margin-top: 0.8rem;
+      font-weight: bold;
+      color: #9aa4b2;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin-top: 0.4rem;
+      padding: 0.6rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: #e6eef8;
+      font-size: 0.95rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      background: linear-gradient(90deg,#7c4dff,#42a5f5);
+      color: #071226;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .small {
+      margin-top: 0.8rem;
+      font-size: 0.85rem;
+      color: #9aa4b2;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h2>Hubungi Kami via WhatsApp, TerimaKasih.</h2>
+    <label for="name">Nama</label>
+    <input id="name" type="text" placeholder="Nama kamu..." />
+
+    <label for="email">Email</label>
+    <input id="email" type="text" placeholder="Email kamu..." />
+
+    <label for="message">Pesan</label>
+    <textarea id="message" rows="4" placeholder="Tulis pesan kamu..."></textarea>
+
+    <button id="sendBtn">Kirim via WhatsApp</button>
+
+    <div class="small">Pesan akan dibuka di WhatsApp Anda untuk dikirim sesuai dengan teks yang telah anda buat.</div>
+  </div>
+
+  <script>
+    const sendBtn = document.getElementById("sendBtn");
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const msgEl = document.getElementById("message");
+
+    sendBtn.addEventListener("click", () => {
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const msg = msgEl.value.trim();
+
+      if (!name || !email || !msg) {
+        alert("Harap isi semua kolom sebelum mengirim!");
+        return;
+      }
+
+      // Ganti dengan nomor WhatsApp tujuan (format internasional, tanpa +)
+      const nomor = "6281278974703";
+
+      const text = `Halo! Saya ${name}.\nEmail: ${email}\n\nPesan:\n${msg}`;
+      const url = `https://wa.me/${nomor}?text=${encodeURIComponent(text)}`;
+
+      window.open(url, "_blank"); // buka di tab baru
+    });
+  </script>
+</body>
+</html>
